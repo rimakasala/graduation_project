@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:graduation_project/Core/constent.dart';
 import 'package:graduation_project/Features/Entered_Screens/Widget/Our_appBar.dart';
 import 'package:graduation_project/Features/Entered_Screens/Widget/enterd_card.dart';
+import 'package:graduation_project/test.dart';
 
-import 'Scanner.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -18,45 +18,87 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        bottomNavigationBar: BottomNavigationBar(
-          onTap: (int x) {
-            setState(() {
-              index = x;
-            });
-          },
-          currentIndex: index,
-          selectedItemColor: blueUses,
-          unselectedItemColor: Colors.black,
-          items: const [
-            BottomNavigationBarItem(
-                icon: Icon(Icons.chat_outlined), label: ''),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.search), label: ''),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.people_alt_outlined), label: ''),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.favorite_border), label: ''),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.home_outlined), label: ''),
-          ],
-        ),
-        body:  SafeArea(
-            child: Stack(
+      bottomNavigationBar: BottomNavigationBar(
+        onTap: (int x) {
+          setState(() {
+            index = x;
+          });
+        },
+        currentIndex: index,
+        selectedItemColor: blueUses,
+        unselectedItemColor: Colors.black,
+        items: [
+          BottomNavigationBarItem(
+            icon: IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.chat_outlined),
+            ),
+            label: '',
+          ),
+          BottomNavigationBarItem(
+            icon: IconButton(
+              onPressed: () {
+                Navigator.pushNamed(context, 'search');
+              },
+              icon: const Icon(Icons.search),
+            ),
+            label: '',
+          ),
+          BottomNavigationBarItem(
+            icon: IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.people_alt_outlined),
+            ),
+            label: '',
+          ),
+          BottomNavigationBarItem(
+            icon: IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.favorite_border),
+            ),
+            label: '',
+          ),
+          BottomNavigationBarItem(
+              icon: IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.home_outlined),
+              ),
+              label: ''),
+        ],
+      ),
+      body: SafeArea(
+        child: Stack(
           children: [
             const OurAppbar(),
-             Column(
+            Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                const Spacer(flex: 3,),
                 InkWell(
-                  child: const EnterdCard(card_name: 'دخول المكتبة'),
+                  child:
+                  const EnterdCard(card_name: ' دخول المكتبة', icon: Icons.qr_code_2,),
                   onTap: (){
-                    Navigator.pushNamed(context, 'scanner');
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>CustomScannerScreen()));
+                  },
+                  // onTap: () {
+                  //   Navigator.pushNamed(context, 'scanner');
+                  // },
+                ),
+                const EnterdCard(card_name: 'الكتب', icon: Icons.library_books_outlined),
+
+                InkWell(
+                  child: const EnterdCard(card_name: 'الامتحانات السابقة', icon: Icons.playlist_add_check_circle_outlined),
+                  onTap: () {
+                    
                   },
                 ),
-                const EnterdCard(card_name: 'استعارة كتاب'),
+                const EnterdCard(card_name: 'مشاريع التخرج', icon: Icons.school_outlined),
+                const Spacer(flex: 1,)
               ],
             ),
           ],
-        )));
+        ),
+      ),
+    );
   }
 }

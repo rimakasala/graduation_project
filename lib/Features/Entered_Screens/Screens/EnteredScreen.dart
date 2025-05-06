@@ -6,12 +6,18 @@ class EnteredScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
+    return  const Scaffold(
+      body: Stack(
         children: [
           OurAppbar(),
-          EnterdCard(card_name: 'قراءة كتاب'),
-          EnterdCard(card_name: 'إستعارة كتاب'),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              EnterdCard(card_name: 'الكتب', icon: Icons.library_books),
+              EnterdCard(card_name: 'الامتحانات السابقة', icon: Icons.checklist),
+              EnterdCard(card_name: 'مشاريع التخرج', icon: Icons.school_outlined),
+            ],
+          ),
         ],
       ),
     );

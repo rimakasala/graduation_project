@@ -1,3 +1,3 @@
 import 'dart:ui';
 
-Color blueUses =Color.fromRGBO(12,140,233, 1);
+Color blueUses =const Color.fromRGBO(12,140,233, 1);

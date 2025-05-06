@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:graduation_project/Features/Borrow_Screens/Screens/Borrowing_Info.dart';
+import 'package:graduation_project/Features/Entered_Screens/Screens/Home.dart';
 
 class OurAppbar extends StatelessWidget {
   const OurAppbar({super.key});
@@ -15,10 +17,17 @@ class OurAppbar extends StatelessWidget {
       )
       ),
       child: AppBar(
+        leading: const Icon(Icons.person_outline),
         centerTitle: true,
-        title: const Text(
-          'Fci-Zu Library',
-          style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+        title: InkWell(
+          onTap: (){ Navigator.push(context ,
+        MaterialPageRoute(builder: (context)=>const Home()));
+            },
+
+          child: const Text(
+            'Fci-Zu Library',
+            style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+          ),
         ),
         actions: [
           PopupMenuButton<String>(
@@ -29,11 +38,6 @@ class OurAppbar extends StatelessWidget {
               color: Colors.white,
               // shadowColor: Colors.grey,
               itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
-                    PopupMenuItem<String>(
-                      value: 'الملف الشخصي',
-                      child: const Text('الملف الشخصي'),
-                      onTap: () {},
-                    ),
                     PopupMenuItem<String>(
                       value: 'الإشعارات',
                       child: const Text('الإشعارات'),
@@ -52,16 +56,14 @@ class OurAppbar extends StatelessWidget {
                     PopupMenuItem<String>(
                       value: 'إستعاره كتاب',
                       child: const Text('إستعاره كتاب'),
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context)=>const BorrowingInfo()));
+                      },
                     ),
                     PopupMenuItem<String>(
                       value: 'إعادة كتاب',
                       child: const Text('إعادة كتاب'),
-                      onTap: () {},
-                    ),
-                    PopupMenuItem<String>(
-                      value: 'الكتب المفضلة',
-                      child: const Text('الكتب المفضلة'),
                       onTap: () {},
                     ),
                     PopupMenuItem<String>(
