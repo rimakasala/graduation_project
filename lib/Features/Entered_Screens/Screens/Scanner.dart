@@ -14,7 +14,6 @@ class _ScannerState extends State<Scanner> {
       body: MobileScanner(
         onDetect: (capture){
 
-
         },
       ),
     );

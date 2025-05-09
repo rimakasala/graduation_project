@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:graduation_project/Core/Clicked_Button.dart';
 import 'package:graduation_project/Features/Entered_Screens/Widget/Our_appBar.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
@@ -21,29 +22,6 @@ class _CustomScannerScreenState extends State<CustomScannerScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white, // Match app bar color
-      // appBar: AppBar(
-      //   backgroundColor: Colors.blue,
-      //   title: Text('Scan QR Code'),
-      //   centerTitle: true,
-      //   leading: IconButton(
-      //     icon: Icon(Icons.arrow_back, color: Colors.white),
-      //     onPressed: () => Navigator.pop(context),
-      //   ),
-      //   actions: [
-      //     IconButton(
-      //       icon: Icon(
-      //         isTorchOn ? Icons.flash_on : Icons.flash_off,
-      //         color: Colors.white,
-      //       ),
-      //       onPressed: () {
-      //         setState(() {
-      //           isTorchOn = !isTorchOn;
-      //         });
-      //         cameraController.toggleTorch();
-      //       },
-      //     ),
-      //   ],
-      // ),
       body: Stack(
         children: [
           const OurAppbar(),
@@ -97,8 +75,9 @@ class _CustomScannerScreenState extends State<CustomScannerScreen> {
               const SizedBox(height: 25,),
               InkWell(
                 onTap: (){
-                  Navigator.pushNamed(context,'enterd');
+                  context.go('/EnteredScreen');
                 },
+
                   child: const ClickedButton(named: 'الدخول', height: 40, width: 105,),
               )
 

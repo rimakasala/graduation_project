@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:graduation_project/Core/constent.dart';
 import 'package:graduation_project/Features/Entered_Screens/Widget/Our_appBar.dart';
 import 'package:graduation_project/Features/Entered_Screens/Widget/enterd_card.dart';
-import 'package:graduation_project/test.dart';
-
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -37,9 +36,7 @@ class _HomeState extends State<Home> {
           ),
           BottomNavigationBarItem(
             icon: IconButton(
-              onPressed: () {
-                Navigator.pushNamed(context, 'search');
-              },
+              onPressed: () =>context.go('/search'),
               icon: const Icon(Icons.search),
             ),
             label: '',
@@ -78,20 +75,15 @@ class _HomeState extends State<Home> {
                   child:
                   const EnterdCard(card_name: ' دخول المكتبة', icon: Icons.qr_code_2,),
                   onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>CustomScannerScreen()));
+                    context.go('/CustomScannerScreen');
                   },
-                  // onTap: () {
-                  //   Navigator.pushNamed(context, 'scanner');
-                  // },
                 ),
-                const EnterdCard(card_name: 'الكتب', icon: Icons.library_books_outlined),
 
-                InkWell(
-                  child: const EnterdCard(card_name: 'الامتحانات السابقة', icon: Icons.playlist_add_check_circle_outlined),
-                  onTap: () {
-                    
-                  },
-                ),
+                // هنا لسه هيتضافcontext.push
+                const EnterdCard(card_name: 'الكتب', icon: Icons.library_books_outlined),
+                // هنا لسه هيتضافcontext.push
+                const EnterdCard(card_name: 'الامتحانات السابقة', icon: Icons.playlist_add_check_circle_outlined),
+                // هنا لسه هيتضافcontext.push
                 const EnterdCard(card_name: 'مشاريع التخرج', icon: Icons.school_outlined),
                 const Spacer(flex: 1,)
               ],

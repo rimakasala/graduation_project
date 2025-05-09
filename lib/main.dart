@@ -3,6 +3,7 @@ import 'package:graduation_project/Features/Entered_Screens/Screens/EnteredScree
 import 'package:graduation_project/Features/Entered_Screens/Screens/Home.dart';
 import 'package:graduation_project/Features/Entered_Screens/Screens/Scanner.dart';
 
+import 'Core/GoRouter.dart';
 import 'Features/Borrow_Screens/Screens/search.dart';
 main(){
   runApp( const Graduation_Project());
@@ -12,16 +13,9 @@ class Graduation_Project extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
+    return  MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      routes: {
-        'enterd':(context)=>const EnteredScreen(),
-        'scanner': (context)=> const Scanner(),
-        'search': (context)=> const Search(),
-
-      },
-      home: const Home(),
-
+      routerConfig: router,
     );
   }
 }

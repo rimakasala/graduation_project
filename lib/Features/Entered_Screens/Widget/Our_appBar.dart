@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:graduation_project/Features/Borrow_Screens/Screens/Borrowing_Info.dart';
 import 'package:graduation_project/Features/Entered_Screens/Screens/Home.dart';
 
@@ -20,10 +21,9 @@ class OurAppbar extends StatelessWidget {
         leading: const Icon(Icons.person_outline),
         centerTitle: true,
         title: InkWell(
-          onTap: (){ Navigator.push(context ,
-        MaterialPageRoute(builder: (context)=>const Home()));
+          onTap: (){
+            context.go('/');
             },
-
           child: const Text(
             'Fci-Zu Library',
             style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
@@ -58,7 +58,7 @@ class OurAppbar extends StatelessWidget {
                       child: const Text('إستعاره كتاب'),
                       onTap: () {
                         Navigator.push(context,
-                            MaterialPageRoute(builder: (context)=>const BorrowingInfo()));
+                            MaterialPageRoute(builder: (context)=> BorrowRequestPage()));
                       },
                     ),
                     PopupMenuItem<String>(
