@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project/Core/constent.dart';
-import 'package:graduation_project/Features/Entered_Screens/Widget/Push_button.dart';
+import 'package:graduation_project/Core/Push_button.dart';
 
 void showFirstDialog(BuildContext context) {
   showDialog(

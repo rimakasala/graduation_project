@@ -41,7 +41,10 @@ class OurAppbar extends StatelessWidget {
                     PopupMenuItem<String>(
                       value: 'الإشعارات',
                       child: const Text('الإشعارات'),
-                      onTap: () {},
+                      onTap: () {
+                        context.push('/NotificationPage');
+
+                      },
                     ),
                     PopupMenuItem<String>(
                       value: 'كل الكتب',
@@ -74,7 +77,9 @@ class OurAppbar extends StatelessWidget {
                     PopupMenuItem<String>(
                       value: 'إختبارات سابقه',
                       child: const Text('إختبارات سابقه'),
-                      onTap: () {},
+                      onTap: () {
+                        context.go('/StudyProgram');
+                      },
                     ),
                     PopupMenuItem<String>(
                       value: 'مشاريع التخرج',

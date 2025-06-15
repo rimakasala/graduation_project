@@ -1,22 +1,92 @@
 import 'package:flutter/material.dart';
-import 'package:graduation_project/Features/Entered_Screens/Widget/Our_appBar.dart';
+import 'package:go_router/go_router.dart';
+import 'package:graduation_project/Core/Our_appBar.dart';
 import 'package:graduation_project/Features/Entered_Screens/Widget/enterd_card.dart';
-class EnteredScreen extends StatelessWidget {
+
+import '../../../Core/constent.dart';
+import 'Home.dart';
+class EnteredScreen extends StatefulWidget {
   const EnteredScreen({super.key});
 
   @override
+  State<EnteredScreen> createState() => _EnteredScreenState();
+}
+
+class _EnteredScreenState extends State<EnteredScreen> {
+  @override
   Widget build(BuildContext context) {
-    return  const Scaffold(
-      body: Stack(
+    return   Scaffold(
+
+      body:  Stack(
         children: [
-          OurAppbar(),
+          const OurAppbar(),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              EnterdCard(card_name: 'الكتب', icon: Icons.library_books),
-              EnterdCard(card_name: 'الامتحانات السابقة', icon: Icons.checklist),
-              EnterdCard(card_name: 'مشاريع التخرج', icon: Icons.school_outlined),
+              const EnterdCard(card_name: 'الكتب', icon: Icons.library_books),
+              GestureDetector (
+                onTap: (){
+                  context.push('/StudyProgram');
+                },
+                  child:const EnterdCard(
+                      card_name: 'الامتحانات السابقة',
+                      icon: Icons.checklist),
+              ),
+              const EnterdCard(card_name: 'مشاريع التخرج', icon: Icons.school_outlined),
             ],
+          ),
+        ],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        // ده الجديد
+        onTap: (int x) {
+          setState(() {
+            index = x;
+          });
+        },
+        currentIndex: index,
+        selectedItemColor: blueUses,
+        unselectedItemColor: Colors.black,
+        items: [
+          BottomNavigationBarItem(
+
+              icon: IconButton(
+                onPressed: () {
+                  context.go('/');
+                },
+                icon: const Icon(Icons.home_outlined),
+              ),
+              label: ''),
+          BottomNavigationBarItem(
+            icon: IconButton(
+              onPressed: () =>context.go('/search'),
+              icon: const Icon(Icons.search),
+            ),
+            label: '',
+          ),
+          BottomNavigationBarItem(
+            icon: IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.people_alt_outlined),
+            ),
+            label: '',
+          ),
+          BottomNavigationBarItem(
+            icon: IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.favorite_border),
+            ),
+            label: '',
+          ),
+
+          BottomNavigationBarItem(
+            icon: IconButton(
+              onPressed: () {
+                context.push('/Chat');
+              },
+              icon: const Icon(Icons.chat_outlined),
+            ),
+            label: '',
           ),
         ],
       ),

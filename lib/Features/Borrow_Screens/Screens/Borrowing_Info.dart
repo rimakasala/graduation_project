@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:graduation_project/Core/Back_Arrow.dart';
 import 'package:graduation_project/Features/Borrow_Screens/Widget/Dialog.dart';
-import 'package:graduation_project/Features/Entered_Screens/Widget/Our_appBar.dart';
-import 'package:graduation_project/Features/Entered_Screens/Widget/Push_button.dart';
+import 'package:graduation_project/Core/Our_appBar.dart';
+import 'package:graduation_project/Features/Borrow_Screens/Widget/Phone_Input_Field.dart';
+import 'package:graduation_project/Core/Push_button.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
+
+import '../Widget/upload_box.dart';
 
 class BorrowRequestPage extends StatefulWidget {
   @override
@@ -25,7 +30,6 @@ class _BorrowRequestPageState extends State<BorrowRequestPage> {
   }
 
   void submitRequest() {
-    // هنا تقدر تضيف منطق الإرسال أو التحقق من البيانات
     if (idImage != null &&
         govPaperImage != null &&
         phoneController.text.isNotEmpty) {
@@ -41,8 +45,10 @@ class _BorrowRequestPageState extends State<BorrowRequestPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const OurAppbar(),
+           const OurAppbar(),
+          const BackArrow(),
           Padding(
             padding: const EdgeInsets.all(20),
             child: Column(
@@ -58,9 +64,14 @@ class _BorrowRequestPageState extends State<BorrowRequestPage> {
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 GestureDetector(
-                  onTap: () =>
-                      pickImage((file) => setState(() => idImage = file)),
-                  child: uploadBox(idImage),
+                  onTap: () {
+                    pickImage((File file) {
+                      setState(() {
+                        idImage = file;
+                      });
+                    });
+                  },
+                  child: UploadBox(imageFile: idImage,),
                 ),
                 const SizedBox(height: 16),
                 const Text(
@@ -68,20 +79,22 @@ class _BorrowRequestPageState extends State<BorrowRequestPage> {
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 GestureDetector(
-                  onTap: () =>
-                      pickImage((file) => setState(() => govPaperImage = file)),
-                  child: uploadBox(govPaperImage),
+                  onTap: (){
+                    pickImage((File file){
+                      setState(() {
+                        govPaperImage=file;
+                      });
+                    });
+                  },
+
+                  child: UploadBox(
+                      imageFile: govPaperImage,
+
+                      ),
                 ),
                 const SizedBox(height: 16),
-                const Text(" :رقم التليفون",
-                    style: TextStyle(fontWeight: FontWeight.bold)),
-                TextField(
-                  controller: phoneController,
-                  keyboardType: TextInputType.number,
-                  decoration:
-                      const InputDecoration(border: OutlineInputBorder()),
-                ),
-                const SizedBox(height: 15),
+                PhoneInputField(phoneController: phoneController),
+                const SizedBox(height: 16),
                 InkWell(
                   onTap: () {
                     submitRequest;
@@ -97,21 +110,6 @@ class _BorrowRequestPageState extends State<BorrowRequestPage> {
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  Widget uploadBox(File? imageFile) {
-    return Container(
-      height: 80,
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey),
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: Center(
-        child: imageFile == null
-            ? const Icon(Icons.camera_alt, size: 32)
-            : Image.file(imageFile),
       ),
     );
   }
